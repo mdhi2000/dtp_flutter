@@ -6,6 +6,7 @@ import 'package:dtp_flutter/model/model.dart';
 import 'package:dtp_flutter/tools/helper.dart';
 // import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:persian_datetime_picker/persian_datetime_picker.dart';
 
@@ -102,10 +103,11 @@ class _FormsListState extends State<FormsList> {
                   onPressed: () async {
                     var json =
                         forms.map((form) => form.toJson()).toList().toString();
-                    final file = await _localJsonFile;
+                    await Clipboard.setData(ClipboardData(text: json));
+                    // final file = await _localJsonFile;
 
                     // Write the file
-                    file.writeAsString(json);
+                    // file.writeAsString(json);
                     // String? outputFile = await FilePicker.platform.saveFile(
                     //   dialogTitle: 'Please select an output file:',
                     //   fileName: 'output-file.pdf',
